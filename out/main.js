@@ -1,23 +1,19 @@
 const CloseModal = m => m.classList.remove("is-active");
-const CloseAllModals = () => $(".modal").each((i, e) => CloseModal(e));
+const CloseAllModals = () => [...document.getElementsByClassName("modal")].forEach(e => CloseModal(e));
 
 const SetupModals = () => {
 	const openModal = m => m.classList.add('is-active');
 
-	$(".js-modal-trigger").each((i, e) => {
+	[...document.getElementsByClassName("js-modal-trigger")].forEach(e => {
 		const modal = e.dataset.target;
 		const target = document.getElementById(modal);
-		
 		e.addEventListener("click", () => openModal(target));
 	});
-	
-	$(".modal-background, .modal-close, .modal-card-head .delete").each((i, e) => {
+
+	[...document.querySelectorAll(".modal-background, .modal-close, .modal-card-head .delete")].forEach(e => {
 		const target = e.closest(".modal");
 		e.addEventListener("click", () => CloseModal(target));
-		
-		document.addEventListener("keydown", e => {
-			if(e.key == "Escape") CloseAllModals();
-		});
+		document.addEventListener("keydown", e => { if(e.key == "Escape") CloseAllModals(); } );
 	});
 };
 
