@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-primary-bg">
+	<head>
+		<title>Team 237 Scouting</title>
+		<link rel="icon" type="image/x-icon" href="./robot.ico">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<meta charset="UTF-8">
+		<link href="./style.css" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+		<script src="./main.js"></script>
+	</head>
+	<body>
+		<nav class="navbar gradient-bg py-4">
+			<div class="navbar-item has-text-centered">
+				<h1 class="title is-1 has-text-white nav-header">Team 237 Scouting</h1>
+			</div>
+
+			<div class="navbar-item is-centered px-6 py-5">
+				<div class="columns is-mobile">
+					<input onclick="PopulateSubmissions()" class="button is-outlined is-warning is-rounded is-fullwidth js-modal-trigger" data-target="manage-panel" value="Manage" type="button" />
+				</div>
+			</div>
+		</nav>
+
+		<section class="section">
+
+			<button type="button" class="button is-small is-size-6 is-responsive is-rounded is-white is-outlined js-modal-trigger" data-target="help-panel">?</button><br><br>
+
+			<form id="match-form">
+			<div class="columns">
+				<div class="column">
+					<fieldset class="box dark-secondary-bg has-text-white">
+						<legend class="label has-text-centered">Match Info</legend>
+
+						<label class="label mb-1">Match Number</label>
+						<div class="field has-addons">
+
+							<div class="control is-expanded">
+								<input id="match-number" class="input is-rounded dark-primary-bg has-text-white borderless" type="number" min="1" step="1" pattern="\d*" placeholder="Match" required>
+							</div>
+
+							<div class="toggle-switch-wrapper control">
+								<input id="alliance-color" type="checkbox" class="toggle-switch">
+							</div>
+						</div>
+
+<fieldset class="has-text-white dark-primary-border round-small py-3 my-3 px-2" id="team-0-results">
+	<legend class="label has-text-centered">Team 1</legend>
+
+	<div class="columns is-gapless has-text-white">
+
+		<div class="column">
+			<div class="field has-text-white">
+				<label class="label mb-1 mt-4">Number</label>
+				<div class="control left-control">
+					<input id="team-0-number" type="number" class="input dark-primary-bg has-text-white borderless" type="number" min="1" step="1" pattern="\d*" placeholder="0000" required>
+				</div>
+			</div>
+		</div>
+
+		<div class="column">
+			<div class="field has-text-white">
+				<label class="label mb-1 mt-4 is-6">Autonomous</label>
+				<div class="control select mid-control is-fullwidth is-warning">
+					<select id="team-0-auto-mobility" class="dark-primary-bg borderless has-text-white">
+						<option>No Mobility</option>
+						<option>Mobility</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="column">
+			<div class="field has-text-white">
+				<label class="label mb-1 mt-4 is-6">&nbsp;</label>
+				<div class="control select mid-control is-fullwidth is-warning">
+					<select id="team-0-auto-charge" class="dark-primary-bg borderless has-text-white">
+						<option>No Auto Charge</option>
+						<option>Auto Docked</option>
+						<option>Auto Charged</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="column">
+			<div class="field has-text-white">
+				<label class="label mb-1 mt-4 is-6">Endgame</label>
+				<div class="control select right-control is-fullwidth is-warning">
+					<select id="team-0-end-charge" class="dark-primary-bg borderless has-text-white">
+						<option>No End Charge</option>
+						<option>End Docked</option>
+						<option>End Charged</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<label class="label mb-1 is-6">Notes</label>
+	<textarea id="team-0-notes" class="textarea dark-primary-bg borderless round-top round-bottom" placeholder="Notes"></textarea>
+</fieldset>
+<fieldset class="has-text-white dark-primary-border round-small py-3 my-3 px-2" id="team-1-results">
+	<legend class="label has-text-centered">Team 2</legend>
+
+	<div class="columns is-gapless has-text-white">
+
+		<div class="column">
+			<div class="field has-text-white">
+				<label class="label mb-1 mt-4">Number</label>
+				<div class="control left-control">
+					<input id="team-1-number" type="number" class="input dark-primary-bg has-text-white borderless" type="number" min="1" step="1" pattern="\d*" placeholder="0000" required>
+				</div>
+			</div>
+		</div>
+
+		<div class="column">
+			<div class="field has-text-white">
+				<label class="label mb-1 mt-4 is-6">Autonomous</label>
+				<div class="control select mid-control is-fullwidth is-warning">
+					<select id="team-1-auto-mobility" class="dark-primary-bg borderless has-text-white">
+						<option>No Mobility</option>
+						<option>Mobility</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="column">
+			<div class="field has-text-white">
+				<label class="label mb-1 mt-4 is-6">&nbsp;</label>
+				<div class="control select mid-control is-fullwidth is-warning">
+					<select id="team-1-auto-charge" class="dark-primary-bg borderless has-text-white">
+						<option>No Auto Charge</option>
+						<option>Auto Docked</option>
+						<option>Auto Charged</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="column">
+			<div class="field has-text-white">
+				<label class="label mb-1 mt-4 is-6">Endgame</label>
+				<div class="control select right-control is-fullwidth is-warning">
+					<select id="team-1-end-charge" class="dark-primary-bg borderless has-text-white">
+						<option>No End Charge</option>
+						<option>End Docked</option>
+						<option>End Charged</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<label class="label mb-1 is-6">Notes</label>
+	<textarea id="team-1-notes" class="textarea dark-primary-bg borderless round-top round-bottom" placeholder="Notes"></textarea>
+</fieldset>
+<fieldset class="has-text-white dark-primary-border round-small py-3 my-3 px-2" id="team-2-results">
+	<legend class="label has-text-centered">Team 3</legend>
+
+	<div class="columns is-gapless has-text-white">
+
+		<div class="column">
+			<div class="field has-text-white">
+				<label class="label mb-1 mt-4">Number</label>
+				<div class="control left-control">
+					<input id="team-2-number" type="number" class="input dark-primary-bg has-text-white borderless" type="number" min="1" step="1" pattern="\d*" placeholder="0000" required>
+				</div>
+			</div>
+		</div>
+
+		<div class="column">
+			<div class="field has-text-white">
+				<label class="label mb-1 mt-4 is-6">Autonomous</label>
+				<div class="control select mid-control is-fullwidth is-warning">
+					<select id="team-2-auto-mobility" class="dark-primary-bg borderless has-text-white">
+						<option>No Mobility</option>
+						<option>Mobility</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="column">
+			<div class="field has-text-white">
+				<label class="label mb-1 mt-4 is-6">&nbsp;</label>
+				<div class="control select mid-control is-fullwidth is-warning">
+					<select id="team-2-auto-charge" class="dark-primary-bg borderless has-text-white">
+						<option>No Auto Charge</option>
+						<option>Auto Docked</option>
+						<option>Auto Charged</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="column">
+			<div class="field has-text-white">
+				<label class="label mb-1 mt-4 is-6">Endgame</label>
+				<div class="control select right-control is-fullwidth is-warning">
+					<select id="team-2-end-charge" class="dark-primary-bg borderless has-text-white">
+						<option>No End Charge</option>
+						<option>End Docked</option>
+						<option>End Charged</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<label class="label mb-1 is-6">Notes</label>
+	<textarea id="team-2-notes" class="textarea dark-primary-bg borderless round-top round-bottom" placeholder="Notes"></textarea>
+</fieldset>
+					</fieldset>
+				</div>
+
+				<div class="column">
+					<fieldset class="box dark-secondary-bg has-text-white">
+						<legend class="label has-text-centered">Scoring</legend>
+
+						<div class="field">
+							<div class="columns is-mobile is-variable is-1">
+									<div class="column">
+										<button type="button" class="button is-fullwidth is-rounded is-white is-outlined px-0" onclick="SelectTeam(0)">Team&nbsp;<span id="team-selector-0">unset</span></button>
+									</div>
+									<div class="column">
+										<button type="button" class="button is-fullwidth is-rounded is-white is-outlined px-0" onclick="SelectTeam(1)">Team&nbsp;<span id="team-selector-1">unset</span></button>
+									</div>
+									<div class="column">
+										<button type="button" class="button is-fullwidth is-rounded is-white is-outlined px-0" onclick="SelectTeam(2)">Team&nbsp;<span id="team-selector-2">unset</span></button>
+									</div>
+							</div>
+						</div>
+
+						<table class="table mx-auto has-text-centered dark-secondary-bg">
+							<tbody>
+										<tr>
+														<td class="score-box" name="scorehigh0" data-scoretype="cone" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+														<td class="score-box" name="scorehigh1" data-scoretype="cube" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+														<td class="score-box" name="scorehigh2" data-scoretype="cone" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+														<td class="score-box" name="scorehigh3" data-scoretype="cone" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+														<td class="score-box" name="scorehigh4" data-scoretype="cube" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+														<td class="score-box" name="scorehigh5" data-scoretype="cone" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+														<td class="score-box" name="scorehigh6" data-scoretype="cone" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+														<td class="score-box" name="scorehigh7" data-scoretype="cube" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+														<td class="score-box" name="scorehigh8" data-scoretype="cone" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+										</tr>
+										<tr>
+														<td class="score-box" name="scoremid0" data-scoretype="cone" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+														<td class="score-box" name="scoremid1" data-scoretype="cube" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+														<td class="score-box" name="scoremid2" data-scoretype="cone" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+														<td class="score-box" name="scoremid3" data-scoretype="cone" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+														<td class="score-box" name="scoremid4" data-scoretype="cube" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+														<td class="score-box" name="scoremid5" data-scoretype="cone" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+														<td class="score-box" name="scoremid6" data-scoretype="cone" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+														<td class="score-box" name="scoremid7" data-scoretype="cube" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+														<td class="score-box" name="scoremid8" data-scoretype="cone" data-score="none" data-auto="false">
+															<div class="score-team-label"></div>
+														</td>
+										</tr>
+										<tr>
+													<td class="score-box" name="scorelow0" data-scoretype="conecube" data-score="none" data-auto="false">
+														<div class="score-team-label"></div>
+													</td>
+													<td class="score-box" name="scorelow1" data-scoretype="conecube" data-score="none" data-auto="false">
+														<div class="score-team-label"></div>
+													</td>
+													<td class="score-box" name="scorelow2" data-scoretype="conecube" data-score="none" data-auto="false">
+														<div class="score-team-label"></div>
+													</td>
+													<td class="score-box" name="scorelow3" data-scoretype="conecube" data-score="none" data-auto="false">
+														<div class="score-team-label"></div>
+													</td>
+													<td class="score-box" name="scorelow4" data-scoretype="conecube" data-score="none" data-auto="false">
+														<div class="score-team-label"></div>
+													</td>
+													<td class="score-box" name="scorelow5" data-scoretype="conecube" data-score="none" data-auto="false">
+														<div class="score-team-label"></div>
+													</td>
+													<td class="score-box" name="scorelow6" data-scoretype="conecube" data-score="none" data-auto="false">
+														<div class="score-team-label"></div>
+													</td>
+													<td class="score-box" name="scorelow7" data-scoretype="conecube" data-score="none" data-auto="false">
+														<div class="score-team-label"></div>
+													</td>
+													<td class="score-box" name="scorelow8" data-scoretype="conecube" data-score="none" data-auto="false">
+														<div class="score-team-label"></div>
+													</td>
+										</tr>
+							</tbody>
+						</table>
+
+						<div class="content">
+							<ul>
+								<li>Click/tap a team to select it for scoring</li>
+								<li>Click/tap a score box to score for the selected team</li>
+								<li>Right click/long press a score box to mark it as autonomous (A)</li>
+							</ul>
+						</div>
+						<div class="buttons is-centered">
+							<input type="checkbox" class="checkbox-labeled" id="win-button">
+							<label for="win-button" class="button is-rounded is-outlined is-centered">Alliance lost</label>
+						</div>
+					</fieldset>
+					<input onclick="TrySubmit()" type="button" class="button is-warning is-rounded is-outlined is-fullwidth js-modal-trigger mb-3" data-target="submit-panel" value="Submit">
+					<input type="button" class="button is-danger is-rounded is-outlined is-fullwidth js-modal-trigger" data-target="clear-panel" value="Clear">
+				</div>
+			</div>
+			</form>
+		</section>
+	</body>
+
+
+<div id="clear-panel" class="modal has-text-white">
+	<div class="modal-background"></div>
+	<div class="modal-card">
+		<header class="modal-card-head dark-primary-bg borderless has-text-white">
+			<p class="modal-card-title">Clear match data</p>
+			<button class="delete"></button>
+		</header>
+		<section class="modal-card-body dark-secondary-bg">
+			<div class="content">
+						<p class="subtitle is-6 has-text-white">Are you sure you want to clear the current match data?</p>
+
+			</div>
+		</section>
+		<footer class="modal-card-foot dark-primary-bg borderless">
+					<input type="button" class="button is-outlined is-danger is-rounded" onclick="ClearMatchInfo(); CloseAllModals();" value="Clear">
+
+		</footer>
+	</div>
+</div>
+
+<div id="submit-panel" class="modal has-text-white">
+	<div class="modal-background"></div>
+	<div class="modal-card">
+		<header class="modal-card-head dark-primary-bg borderless has-text-white">
+			<p class="modal-card-title">Confirm Submission</p>
+			<button class="delete"></button>
+		</header>
+		<section class="modal-card-body dark-secondary-bg">
+			<div class="content">
+						<p class="subtitle is-6 has-text-white">Please check over your scouting data before submitting!</p>
+		<div id="submit-errors" class="content"></div>
+
+			</div>
+		</section>
+		<footer class="modal-card-foot dark-primary-bg borderless">
+					<button onclick="ConfirmSubmit(); CloseAllModals();" id="submit-confirm-button" type="button" class="button is-outlined is-warning is-rounded">Submit</button>
+
+		</footer>
+	</div>
+</div>
+
+<div id="manage-panel" class="modal has-text-white">
+	<div class="modal-background"></div>
+	<div class="modal-card">
+		<header class="modal-card-head dark-primary-bg borderless has-text-white">
+			<p class="modal-card-title">Manage Submissions</p>
+			<button class="delete"></button>
+		</header>
+		<section class="modal-card-body dark-secondary-bg">
+			<div class="content">
+						<p class="subtitle is-5 has-text-centered" style="color: #888888" id="no-submissions-text">No submissions yet.</p>
+		<div class="content has-text-white">
+			<div class="dropdown-wrapper content" id="submissions-list"></div>
+		</div>
+
+			</div>
+		</section>
+		<footer class="modal-card-foot dark-primary-bg borderless">
+					<input onclick="UploadSubmissions(); CloseAllModals();" type="button" class="button is-outlined is-warning is-fullwidth is-rounded" value="Upload Submissions"/>
+		<input onclick="DeleteSelectedSubmissions();" id="delete-submissions-button" type="button" class="button is-outlined is-danger is-fullwidth is-rounded" value="Delete">
+
+		</footer>
+	</div>
+</div>
+	
+<div id="help-panel" class="modal has-text-white">
+	<div class="modal-background"></div>
+	<div class="modal-card">
+		<header class="modal-card-head dark-primary-bg borderless has-text-white">
+			<p class="modal-card-title">Help</p>
+			<button class="delete"></button>
+		</header>
+		<section class="modal-card-body dark-secondary-bg">
+			<div class="content">
+				<blockquote class="dark has-text-white">
+	<h5 class="title is-5">Autonomous Period</h5>
+		<p class="subtitle is-6">The first phase of each match is 15 seconds long and called the Autonomous
+			Period (auto). During auto, robots operate without any drive team control
+			or input.</p>
+</blockquote><blockquote class="dark has-text-white">
+	<h5 class="title is-5">Teleoperated Period</h5>
+		<p class="subtitle is-6">The second phase of each match is the remaining 2:15 and called the
+			Teleoperated Period. During this phase, drivers remotely operate robots to
+			retrieve and score game pieces.</p>
+</blockquote><blockquote class="dark has-text-white">
+	<h5 class="title is-5">Endgame</h5>
+		<p class="subtitle is-6">The final 30 seconds of the teleop stage is the endgame, during which
+			robots attempt to park, dock on, and/or engage with their alliance's
+			charge station or continue to score game pieces.</p>
+</blockquote><blockquote class="dark has-text-white">
+	<h5 class="title is-5">Mobility</h5>
+		<p class="subtitle is-6">The award given to a robot whose bumpers have completely left its
+			community at any point <strong>during auto</strong>.</p>
+</blockquote><blockquote class="dark has-text-white">
+	<h5 class="title is-5">Charge Status</h5>
+		<p class="subtitle is-6">A robot earns points for its alliance by docking on or engaging with their
+			charge station.</p>
+		<p class="subtitle is-6">A robot is <strong>docked</strong> if it is contacting only the charge
+			station and/or other items also directly or transitively fully supported by
+			the charge station.</p>
+		<p class="subtitle is-6">A robot is <strong>engaged</strong> if the charge station is level and all
+			alliance robots contacting the charge station are docked.</p>
+</blockquote>
+			</div>
+		</section>
+		<footer class="modal-card-foot dark-primary-bg borderless">
+			
+		</footer>
+	</div>
+</div></html>

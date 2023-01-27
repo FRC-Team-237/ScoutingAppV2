@@ -1,0 +1,61 @@
+<fieldset class="has-text-white dark-primary-border round-small py-3 my-3 px-2" id="team-{{ team_id }}-results">
+	{# TEAM LABEL #}
+	<legend class="label has-text-centered">Team {{ team_id + 1 }}</legend>
+
+	<div class="columns is-gapless has-text-white">
+
+		{# TEAM NUMBER #}
+		<div class="column">
+			<div class="field has-text-white">
+				<label class="label mb-1 mt-4">Number</label>
+				<div class="control left-control">
+					<input id="team-{{ team_id }}-number" type="number" class="input dark-primary-bg has-text-white borderless" type="number" min="1" step="1" pattern="\d*" placeholder="0000" required>
+				</div>
+			</div>
+		</div>
+
+		{# AUTO MOBILITY #}
+		<div class="column">
+			<div class="field has-text-white">
+				<label class="label mb-1 mt-4 is-6">Autonomous</label>
+				<div class="control select mid-control is-fullwidth is-warning">
+					<select id="team-{{ team_id }}-auto-mobility" class="dark-primary-bg borderless has-text-white">
+						<option>No Mobility</option>
+						<option>Mobility</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		{# AUTO CHARGE #}
+		<div class="column">
+			<div class="field has-text-white">
+				<label class="label mb-1 mt-4 is-6">&nbsp;</label>
+				<div class="control select mid-control is-fullwidth is-warning">
+					<select id="team-{{ team_id }}-auto-charge" class="dark-primary-bg borderless has-text-white">
+						<option>No Auto Charge</option>
+						<option>Auto Docked</option>
+						<option>Auto Charged</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		{# END CHARGE #}
+		<div class="column">
+			<div class="field has-text-white">
+				<label class="label mb-1 mt-4 is-6">Endgame</label>
+				<div class="control select right-control is-fullwidth is-warning">
+					<select id="team-{{ team_id }}-end-charge" class="dark-primary-bg borderless has-text-white">
+						<option>No End Charge</option>
+						<option>End Docked</option>
+						<option>End Charged</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<label class="label mb-1 is-6">Notes</label>
+	<textarea id="team-{{ team_id }}-notes" class="textarea dark-primary-bg borderless round-top round-bottom" placeholder="Notes"></textarea>
+</fieldset>
