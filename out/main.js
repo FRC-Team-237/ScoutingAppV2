@@ -364,12 +364,20 @@ const GetSubmissions = () => {
 
 const GetDeleteIndices = () => {
 	const submissionsList = document.getElementById("submissions-list");
-	return jQuery.makeArray(submissionsList.getElementsByTagName("label"))
+	
+	return [...document.getElementById("submissions-list").getElementsByTagName("label")]
 		.filter(label => label.dataset.delete == "true")
 		.map(label => {
 			const attributeString = label.getAttribute("for");
 			return parseInt(attributeString.substring(attributeString.lastIndexOf("-") + 1));
 		});
+
+	// return jQuery.makeArray(submissionsList.getElementsByTagName("label"))
+	// 	.filter(label => label.dataset.delete == "true")
+	// 	.map(label => {
+	// 		const attributeString = label.getAttribute("for");
+	// 		return parseInt(attributeString.substring(attributeString.lastIndexOf("-") + 1));
+	// 	});
 }
 
 const DeleteSelectedSubmissions = () => {
