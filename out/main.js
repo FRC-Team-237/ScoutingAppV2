@@ -212,7 +212,7 @@ const ResultsToObject = () => {
 		const filterByThisTeam = row => {
 			scoreValues[row].map(scoreBox => 
 				scoreBox.teamID == i
-					? scoreBox.valid * (auto ? -1 : 1)
+					? scoreBox.valid * (scoreBox.auto ? -1 : 1)
 					: 0);
 		};
 
@@ -325,14 +325,41 @@ const ConfirmSubmit = () => {
 	window.scrollTo(0, 0);
 };
 
+const AddRandomMatches = count => {
+	const teams = [...Array(40)].map(value => Math.floor(Math.random() * 10000));
+	for(let i = 0; i < count; i++) {
+		const matchTeams = teams.sort(() => 0.5 - Math.random()).slice(0, 3);
+		const RandomTeamData = number => {
+			const RandomRowData = () => [...Array(9)].map(value => Math.floor(Math.random() * 5) - 2);
+			return {
+				teamNumber: number,
+				autonomous: { mobility: Math.random() > 0.5, charge: Math.floor(Math.random() * 3) },
+				endgame: { charge: Math.floor(Math.random() * 3) },
+				notes: "Randomly generated data",
+				scoreMatrix: { high: RandomRowData(), mid: RandomRowData(), low: RandomRowData() }
+			}
+		};
+		const result = {
+			submitTime: 0,
+			matchNumber: i + 1,
+			alliance: Math.random() > 0.5? "red" : "blue",
+			win: Math.random() > 0.5,
+			teamData: [...Array(3)].map((team, index) => RandomTeamData(matchTeams[index]))
+		}
+		AddSubmission(result);
+	}
+};
+
 const DebugRandomSubmission = () => {
+	const teams = [...Array(40)].map(value => Math.floor(Math.random() * 10000));
+	const matchTeams = teams.sort(() => 0.5 - Math.random()).slice(0, 3);
 	const RandomTeamData = () => {
 		const RandomRowData = () => [...Array(9)].map(value => Math.floor(Math.random() * 5) - 2);
 		return {
-			teamNumber: Math.ceil(Math.random() * 10000),
-			autonomous: { mobility: false, charge: 0 },
-			endgame: { charge: 0 },
-			notes: "",
+			teamNumber: teams.sort(() => 0.5 - Math.random())[0],
+			autonomous: { mobility: Math.random() > 0.5, charge: Math.floor(Math.random() * 3) },
+			endgame: { charge: Math.floor(Math.random() * 3) },
+			notes: "Randomly generated data",
 			scoreMatrix: { high: RandomRowData(), mid: RandomRowData(), low: RandomRowData() }
 		}
 	}
@@ -359,7 +386,7 @@ const AddSubmission = submission => {
 
 const GetSubmissions = () => {
 	if(localStorage.getItem("submissions") == null) return [];
-	return JSON.parse(localStorage.getItem("submissions"));
+	return JSON.parse(localStorage.getItem("submissions")).sort((a, b) => a.matchNumber - b.matchNumber);
 };
 
 const GetDeleteIndices = () => {
@@ -371,13 +398,6 @@ const GetDeleteIndices = () => {
 			const attributeString = label.getAttribute("for");
 			return parseInt(attributeString.substring(attributeString.lastIndexOf("-") + 1));
 		});
-
-	// return jQuery.makeArray(submissionsList.getElementsByTagName("label"))
-	// 	.filter(label => label.dataset.delete == "true")
-	// 	.map(label => {
-	// 		const attributeString = label.getAttribute("for");
-	// 		return parseInt(attributeString.substring(attributeString.lastIndexOf("-") + 1));
-	// 	});
 }
 
 const DeleteSelectedSubmissions = () => {
