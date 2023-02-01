@@ -329,14 +329,24 @@ const AddRandomMatches = count => {
 	const teams = [...Array(40)].map(value => Math.floor(Math.random() * 10000));
 	for(let i = 0; i < count; i++) {
 		const matchTeams = teams.sort(() => 0.5 - Math.random()).slice(0, 3);
+		let remainingCells = 9 * 3;
 		const RandomTeamData = number => {
-			const RandomRowData = () => [...Array(9)].map(value => Math.floor(Math.random() * 5) - 2);
+			const scoreCount = Math.floor(Math.random() * remainingCells);
+			remainingCells -= scoreCount;
+			const RandomRowData = [...Array(3)].map(row => [...Array(9)].map(value => 0));
+			for(let c = 0; c < scoreCount; c++) {
+				let cellPosition = { row: Math.floor(Math.random() * 3), cell: Math.floor(Math.random() * 9) };
+				while(RandomRowData[cellPosition.row][cellPosition.cell] != 0) {
+					cellPosition = { row: Math.floor(Math.random() * 3), cell: Math.floor(Math.random() * 9) };
+				}
+				RandomRowData[cellPosition.row][cellPosition.cell] = Math.floor(Math.random() * 3) * (Math.random() > 0.5 ? -1 : 1);
+			}
 			return {
 				teamNumber: number,
 				autonomous: { mobility: Math.random() > 0.5, charge: Math.floor(Math.random() * 3) },
 				endgame: { charge: Math.floor(Math.random() * 3) },
 				notes: "Randomly generated data",
-				scoreMatrix: { high: RandomRowData(), mid: RandomRowData(), low: RandomRowData() }
+				scoreMatrix: { high: RandomRowData[0], mid: RandomRowData[1], low: RandomRowData[2] }
 			}
 		};
 		const result = {
