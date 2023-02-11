@@ -39,13 +39,13 @@
 	color: rgba(0.8, 0.8, 0.8, 0.7);
 }
 .button.is-white.is-selected {
-	background-color: white;
-	color: black;
+	background-color: white !important;
+	color: black !important;
 }
 
 blockquote.dark {
 	border-left-color: #c5731b !important;
-	background-color: #444444;
+	background-color: #444444 !important;
 }
 
 blockquote.is-danger {
@@ -142,13 +142,13 @@ td.score-box {
 	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
-	border: 2px solid #333333 !important;
+	border: 5px solid #333333 !important;
 	border-radius: 10px;
 	transition: 100ms;
 	-webkit-transition: 100ms;
 	width: 80px;
+	padding: 0 !important;
 	position: relative;
-	padding: 0;
 	overflow: hidden;
 }
 
@@ -171,6 +171,8 @@ td.score-box::after {
 	display: block;
 	position: absolute;
 	width: 100%;
+	top: 4px;
+	left: 0.5px;
 	font-size: 2em;
 	text-align: center;
 	-webkit-text-stroke: 1.5px black;
